@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 	
 	velocity = direction * move_speed
 	
-	pass
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
