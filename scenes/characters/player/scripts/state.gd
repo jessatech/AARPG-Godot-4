@@ -15,7 +15,7 @@ func enter() -> void:
 	pass
 
 
-# Happens when state is exted
+# Happens when state is exited
 func exit() -> void:
 	pass
 
