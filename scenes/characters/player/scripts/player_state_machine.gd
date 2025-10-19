@@ -1,7 +1,7 @@
 class_name PlayerStateMachine extends Node
 
 
-var states : Array[ State ]
+var states : Array[ State ] = []
 var previous_state : State
 var current_state : State
 var _player: Player
