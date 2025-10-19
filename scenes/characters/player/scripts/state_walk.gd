@@ -11,7 +11,7 @@ func enter() -> void:
 	player.update_animation("walk")
 
 
-# Happens when state is exted
+# Happens when state is exited
 func exit() -> void:
 	pass
 

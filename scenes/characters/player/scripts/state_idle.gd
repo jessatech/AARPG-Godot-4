@@ -9,7 +9,7 @@ func enter() -> void:
 	player.update_animation("idle")
 
 
-# Happens when state is exted
+# Happens when state is exited
 func exit() -> void:
 	pass
 
