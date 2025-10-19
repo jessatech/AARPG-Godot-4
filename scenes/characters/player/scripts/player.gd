@@ -58,7 +58,6 @@ func set_state() -> bool:
 
 func update_animation() -> void:
 	animation_player.play(state + "_" + anim_direction())
-	pass
 
 
 func anim_direction() -> String:
