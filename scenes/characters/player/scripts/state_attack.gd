@@ -29,7 +29,6 @@ func enter() -> void:
 func exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
-	pass
 
 
 # Happens during the _process update in this State
