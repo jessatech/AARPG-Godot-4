@@ -2,8 +2,11 @@ class_name State extends Node
 
 
 # Stores reference to the player that this State belongs to
-static var player: Player
+var player: Player
 
+
+func configure(p: Player) -> void:
+	player = p
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +25,7 @@ func exit() -> void:
 
 # Happens during the _process update in this State
 func process(_delta : float) -> State:
-	return null
+	return null # return self to “stay”, or another State instance to transition
 
 
 # Happens during the _physics_process update to this State
