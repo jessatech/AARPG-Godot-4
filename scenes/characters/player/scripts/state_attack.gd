@@ -13,7 +13,7 @@ var hurt_delay : float = 0.1
 
 @onready var idle: Idle_State = $"../Idle"
 @onready var walk: Walk_State = $"../Walk"
-@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 
 # Happens when state is entered

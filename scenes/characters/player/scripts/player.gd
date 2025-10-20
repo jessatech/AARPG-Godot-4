@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody2D
 
+const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
+const DIRECTION_BIAS : float = 0.1
+
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
@@ -24,26 +27,24 @@ func _physics_process(delta: float) -> void:
 
 
 func set_direction() -> bool:
-	var new_dir : Vector2 = cardinal_direction
 	if direction == Vector2.ZERO:
-		return false
+		return false	
 	
-	if direction.y == 0:
-		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	elif direction.x == 0:
-		new_dir = Vector2.UP if direction.y <0 else Vector2.DOWN
+	var direction_id : int = int(round((direction + cardinal_direction * DIRECTION_BIAS).angle() / TAU * DIR_4.size()))
+	var new_dir = DIR_4[direction_id]
 	
 	if new_dir == cardinal_direction:
 		return false
 	
 	cardinal_direction = new_dir
-	direction_changed.emit(new_dir)
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+	direction_changed.emit(new_dir)
 	return true
 
 
 func update_animation(state : String) -> void:
 	animation_player.play(state + "_" + anim_direction())
+	animation_player.advance(0) # Force immediate update to avoid anim frame scaling flicker
 
 
 func anim_direction() -> String:
