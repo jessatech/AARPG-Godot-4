@@ -1,7 +1,9 @@
 class_name Player extends CharacterBody2D
 
-var cardinal_direction : Vector2 = Vector2.DOWN
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
+const DIRECTION_BIAS : float = 0.1
+
+var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -28,7 +30,7 @@ func set_direction() -> bool:
 	if direction == Vector2.ZERO:
 		return false	
 	
-	var direction_id : int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
+	var direction_id : int = int(round((direction + cardinal_direction * DIRECTION_BIAS).angle() / TAU * DIR_4.size()))
 	var new_dir = DIR_4[direction_id]
 	
 	if new_dir == cardinal_direction:
