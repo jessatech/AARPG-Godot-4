@@ -2,6 +2,7 @@ class_name Attack_State extends State
 
 
 var attacking : bool = false
+var hurt_delay : float = 0.1
 
 @export var attack_sound : AudioStream
 @export_range(1, 20, 0.5) var decelerate_speed : float = 5.0
@@ -12,6 +13,7 @@ var attacking : bool = false
 
 @onready var idle: Idle_State = $"../Idle"
 @onready var walk: Walk_State = $"../Walk"
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
 
 # Happens when state is entered
@@ -23,12 +25,15 @@ func enter() -> void:
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
 	attacking = true
+	await get_tree().create_timer(hurt_delay).timeout
+	hurt_box.monitoring = true
 
 
 # Happens when state is exited
 func exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
+	hurt_box.monitoring = false
 
 
 # Happens during the _process update in this State
